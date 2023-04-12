@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Game {
-    ArrayList<Player> players = new ArrayList<>();
+    HashMap<String, Player> players = new HashMap<>();
 
-    private ArrayList<Player> addPlayer(Player player) {
-        players.add(player);
+    private HashMap<String, Player> addPlayer(Player player) {
+        players.put(player.name, player);
         return players;
     }
 
@@ -13,9 +14,10 @@ public class Game {
     }
 
     public Player findByName(String playerName) {
-        for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).name == playerName) {
-                return players.get(i);
+        for (String key : players.keySet()) {
+            Player value = players.get(key);
+            if (value.name == playerName) {
+                return players.get(key);
             }
         }
         return null;
